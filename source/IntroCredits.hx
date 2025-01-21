@@ -14,13 +14,11 @@ class IntroCredits extends MusicBeatState
     override function create()
     {
         
-        var video:MP4Handler = new MP4Handler();
-        video.playMP4(Paths.video('introCREDITS'), new TitleState()); 
-
-        
-        
-
-        
+        var video:VideoHandler = new VideoHandler();
+        video.playVideo(Paths.video('introCREDITS');
+        video.finishCallback = function() {
+        FlxG.switchState(new TitleState());
+        }
         super.create();
     }
 
