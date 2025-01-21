@@ -1103,6 +1103,14 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(blackFuck, {alpha: 0}, 1);
 				});
 
+				if (FlxG.save.data.jumpscares) {
+					// Preload the main jumpscare, if we're going to use it.
+					// This increases memory usage but removes the lag spike.
+					// Disabling jumpscares in the options will reduce the memory usage.
+					daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE', 'exe');
+					daJumpscare.animation.addByPrefix('jump','sonicSPOOK',24, false);
+				}
+
 				default:
 					startCountdown();
 			}
@@ -1307,12 +1315,7 @@ class PlayState extends MusicBeatState
 	function doJumpscare()
 		{
 			trace ('JUMPSCARE aaaa');
-			
-			
-	
-			daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE', 'exe');
-			daJumpscare.animation.addByPrefix('jump','sonicSPOOK',24, false);
-			
+
 			daJumpscare.screenCenter();
 
 			daJumpscare.scale.x = 1.1;
