@@ -3807,7 +3807,7 @@ class PlayState extends MusicBeatState
 
 			public function backgroundVideo(source:String) // for background videos
 				{
-     trace('we dont need webm, yes')
+     trace('we dont need webm, yes');
 				}
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
