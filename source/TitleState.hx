@@ -315,7 +315,10 @@ class TitleState extends MusicBeatState
 				var returnedData:Array<String> = [];
 				
 				var video:VideoHandler = new VideoHandler();
-                video.playVideo(Paths.video('bothCreditsAndIntro'), new MainMenuState()); 
+                video.playVideo(Paths.video('bothCreditsAndIntro')); 
+              video.finishCallback = function() {
+              FlxG.switchState(new MainMenuState());
+              }
 				
 				http.onData = function (data:String)
 				{
