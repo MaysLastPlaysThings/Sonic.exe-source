@@ -25,9 +25,9 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
+import hxcodec.VideoHandler;
 
 #if windows
 import Discord.DiscordClient;
@@ -314,8 +314,8 @@ class TitleState extends MusicBeatState
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
 				
-				var video:MP4Handler = new MP4Handler();
-                video.playMP4(Paths.video('bothCreditsAndIntro'), new MainMenuState()); 
+				var video:VideoHandler = new VideoHandler();
+                video.playVideo(Paths.video('bothCreditsAndIntro'), new MainMenuState()); 
 				
 				http.onData = function (data:String)
 				{
