@@ -3115,7 +3115,7 @@ class PlayState extends MusicBeatState
 					else if (curSong.toLowerCase() == 'too-slow' && FlxG.save.data.soundTestUnlocked)
 					{
 						var video:VideoHandler = new VideoHandler();
-						video.playVideo(Paths.video('tooslowcutscene2'); 
+						video.playVideo(Paths.video('tooslowcutscene2')); 
 						video.finishCallback = function() {
 						FlxG.switchState(new MainMenuState());
 						}
