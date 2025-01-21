@@ -1527,6 +1527,7 @@ class PlayState extends MusicBeatState
 	 #end
 		if (executeModchart)
 		{
+			var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
 			luaModchart = ModchartState.createModchartState();
 			luaModchart.executeState('start',[songLowercase]);
 		}
