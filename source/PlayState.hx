@@ -1812,7 +1812,6 @@ class PlayState extends MusicBeatState
 		var playerCounter:Int = 0;
 
 		// Per song offset check
-		#if windows
 			// pre lowercasing the song name (generateSong)
 			var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
 				switch (songLowercase) {
@@ -1821,7 +1820,8 @@ class PlayState extends MusicBeatState
 				}
 
 			var songPath = 'assets/data/' + songLowercase + '/';
-			
+
+		#if windows
 			for(file in sys.FileSystem.readDirectory(songPath))
 			{
 				var path = haxe.io.Path.join([songPath, file]);
