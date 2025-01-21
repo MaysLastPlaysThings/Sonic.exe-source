@@ -2998,8 +2998,6 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
-		if (useVideo)
-			{
 		if (isStoryMode)
 			campaignMisses = misses;
 
