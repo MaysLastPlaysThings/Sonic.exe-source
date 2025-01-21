@@ -1,10 +1,10 @@
-function start (song)
+function start(song)
 	print("Song: " .. song .. " @ " .. bpm .. " downscroll: " .. downscroll)
 
 end
 
 
-function update (elapsed)
+function update(elapsed)
     local currentBeat = (songPos / 1000)*(bpm/84)
     if curStep >= 789 and curStep < 923 then
         for i=0,8 do
@@ -37,23 +37,21 @@ function update (elapsed)
     if curStep >= 1392 and curStep < 1428 then
         tweenCameraZoom(1.2, 0.5)
     end
-
-
 end
 
 
 
-function beatHit (beat)
+function beatHit(beat)
    -- do nothing
 
 end 
 
-function stepHit (step)
+function stepHit(step)
 
 
 end
 
-function keyPressed (key)
+function keyPressed(key)
    -- do nothing
 end
 
