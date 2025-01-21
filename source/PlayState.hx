@@ -1516,18 +1516,15 @@ class PlayState extends MusicBeatState
 		generateStaticArrows(0, doesitTween);
 		generateStaticArrows(1, doesitTween);
 
-
-		#if windows
 		// pre lowercasing the song name (startCountdown)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
 		switch (songLowercase) {
 			case 'dad-battle': songLowercase = 'dadbattle';
 			case 'philly-nice': songLowercase = 'philly';
 		}
-	 #end
+
 		if (executeModchart)
 		{
-			var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
 			luaModchart = ModchartState.createModchartState();
 			luaModchart.executeState('start',[songLowercase]);
 		}
