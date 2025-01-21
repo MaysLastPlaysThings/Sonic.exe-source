@@ -96,8 +96,6 @@
 	
 	<haxelib name="actuate" />
 	<haxelib name="hxCodec" if="desktop || mobile" />
-	
-
 	<haxelib name="actuate" />
 
 	<!--In case you want to use the ui package-->
@@ -145,7 +143,7 @@
 
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
-
+	<haxedef name="no-deprecation-warnings"/>
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
