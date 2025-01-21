@@ -49,7 +49,7 @@ class Main extends Sprite
 		}
 	}
 
-	public static var webmHandler:WebmHandler;
+	//public static var webmHandler:WebmHandler;
 
 	private function init(?E:Event):Void
 	{
@@ -85,7 +85,7 @@ class Main extends Sprite
 
 		var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
 
-		#if web
+		#if (web && !desktop)
 		var str1:String = "HTML CRAP";
 		var vHandler = new VideoHandler();
 		vHandler.init1();
