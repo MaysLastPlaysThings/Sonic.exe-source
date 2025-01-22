@@ -130,8 +130,10 @@ class GameOverSubstate extends MusicBeatSubstate
 		bf.playAnim('firstDeath');
 		sonicDEATH.playAnim('firstDEATH');
 		FlxG.sound.play(Paths.sound('woooshFIRSTDEATH', 'shared'));
-
-		
+   #if mobile
+   addVirtualPad(NONE, A_B);
+   addVirtualPadCamera(false);
+   #end
 	}
 
 	function startCountdown():Void
