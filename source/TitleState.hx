@@ -1,7 +1,7 @@
 package;
 
 import flixel.input.gamepad.mappings.MayflashWiiRemoteMapping;
-#if sys
+#if desktop
 import smTools.SMFile;
 #end
 import flixel.FlxG;
