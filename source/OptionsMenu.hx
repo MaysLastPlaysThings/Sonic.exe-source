@@ -176,9 +176,9 @@ class OptionsMenu extends MusicBeatState
 				}
 			}
 			
-			if (controls.UP)
+			if (controls.UP_P)
 				changeSelection(-1);
-			if (controls.DOWN)
+			if (controls.DOWN_P)
 				changeSelection(1);
 			
 			if (isCat)
@@ -187,16 +187,16 @@ class OptionsMenu extends MusicBeatState
 				{
 					if (FlxG.keys.pressed.SHIFT)
 						{
-							if (controls.RIGHT)
+							if (controls.RIGHT_P)
 								currentSelectedCat.getOptions()[curSelected].right();
-							if (controls.LEFT)
+							if (controls.LEFT_P)
 								currentSelectedCat.getOptions()[curSelected].left();
 						}
 					else
 					{
-						if (controls.RIGHT)
+						if (controls.RIGHT_P)
 							currentSelectedCat.getOptions()[curSelected].right();
-						if (controls.LEFT)
+						if (controls.LEFT_P)
 							currentSelectedCat.getOptions()[curSelected].left();
 					}
 				}
