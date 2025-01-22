@@ -55,8 +55,8 @@ class OptionsMenu extends MusicBeatState
 		]),
 		
 		new OptionCategory("Misc", [
-			#if desktop
 			new FPSOption("Toggle the FPS Counter"),
+			#if desktop
 			new ReplayOption("View replays"),
 			#end
 			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
@@ -115,6 +115,11 @@ class OptionsMenu extends MusicBeatState
 		FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.elasticInOut});
 		FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.elasticInOut});
 
+   #if mobile
+   addVirtualPad(LEFT_FULL, A_B_C);
+   addVirtualPadCamera(false);
+   #end
+
 		super.create();
 	}
 
@@ -124,6 +129,11 @@ class OptionsMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+   #if mobile
+   if (virtualPad.buttonC.justPressed)
+   FlxG.switchState(new mobile.MobileControlsState());
+   #end
 
 		if (acceptInput)
 		{
@@ -166,9 +176,9 @@ class OptionsMenu extends MusicBeatState
 				}
 			}
 			
-			if (FlxG.keys.justPressed.UP)
+			if (controls.UP)
 				changeSelection(-1);
-			if (FlxG.keys.justPressed.DOWN)
+			if (controls.DOWN)
 				changeSelection(1);
 			
 			if (isCat)
@@ -177,16 +187,16 @@ class OptionsMenu extends MusicBeatState
 				{
 					if (FlxG.keys.pressed.SHIFT)
 						{
-							if (FlxG.keys.pressed.RIGHT)
+							if (controls.RIGHT)
 								currentSelectedCat.getOptions()[curSelected].right();
-							if (FlxG.keys.pressed.LEFT)
+							if (controls.LEFT)
 								currentSelectedCat.getOptions()[curSelected].left();
 						}
 					else
 					{
-						if (FlxG.keys.justPressed.RIGHT)
+						if (controls.RIGHT)
 							currentSelectedCat.getOptions()[curSelected].right();
-						if (FlxG.keys.justPressed.LEFT)
+						if (controls.LEFT)
 							currentSelectedCat.getOptions()[curSelected].left();
 					}
 				}
