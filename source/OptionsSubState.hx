@@ -31,6 +31,10 @@ class OptionsSubState extends MusicBeatSubstate
 			optionText.ID = i;
 			grpOptionsTexts.add(optionText);
 		}
+		#if mobile
+		addVirtualPad(UP_DOWN, A);
+		addVirtualPadCamera(false);
+		#end
 	}
 
 	override function update(elapsed:Float)
