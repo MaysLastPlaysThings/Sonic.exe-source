@@ -44,9 +44,7 @@ class SoundTestMenu extends MusicBeatState
 	var daNO_NUMBER = new FlxText(FlxG.width / 6, FlxG.height / 2, 0, '0', 23);
 	
 
-    override function create()
-        {
-
+    override function create() {
 			new FlxTimer().start(0.1, function(tmr:FlxTimer)
 				{
 					FlxG.sound.playMusic(Paths.music('breakfast'));
@@ -77,8 +75,6 @@ class SoundTestMenu extends MusicBeatState
 			soundtesttext.setFormat("Sonic CD Menu Font Regular", 25, FlxColor.fromRGB(0, 163, 255));
 			soundtesttext.setBorderStyle(SHADOW, FlxColor.BLACK, 4, 1);
 			add(soundtesttext);
-			
-
 
 			pcmNO.setFormat("Sonic CD Menu Font Regular", 23, FlxColor.fromRGB(174, 179, 251));
 			pcmNO.setBorderStyle(SHADOW, FlxColor.fromRGB(106, 110, 159), 4, 1);
@@ -86,26 +82,18 @@ class SoundTestMenu extends MusicBeatState
 			daNO.setFormat("Sonic CD Menu Font Regular", 23, FlxColor.fromRGB(174, 179, 251));
 			daNO.setBorderStyle(SHADOW, FlxColor.fromRGB(106, 110, 159), 4, 1);
 
-
-
-			
 			pcmNO.y -= 70;
 			pcmNO.x += 100;
-
 			daNO.y -= 70;
-			
 			add(pcmNO);
-
 			add(daNO);
 
-			
 			pcmNO_NUMBER.y -= 70;
 			pcmNO_NUMBER.x += 270;
 			pcmNO_NUMBER.setFormat("Sonic CD Menu Font Regular", 23, FlxColor.fromRGB(174, 179, 251));
 			pcmNO_NUMBER.setBorderStyle(SHADOW, FlxColor.fromRGB(106, 110, 159), 4, 1);
 			add(pcmNO_NUMBER);
 
-			
 			daNO_NUMBER.y -= 70;
 			daNO_NUMBER.x += daNO.x - 70;
 			daNO_NUMBER.setFormat("Sonic CD Menu Font Regular", 23, FlxColor.fromRGB(174, 179, 251));
@@ -120,13 +108,15 @@ class SoundTestMenu extends MusicBeatState
 
 			cameoImg.visible = false;
 			add(cameoImg);
-
-
-
 			add(whiteshit);
 
-			
-        }
+      #if mobile
+      addVirtualPad(LEFT_FULL, A_B);
+      addVirtualPadCamera(false);
+      #end
+
+			super.create();
+  }
 
 	function changeNumber(selection:Int) 
 	{
@@ -358,17 +348,17 @@ class SoundTestMenu extends MusicBeatState
 		
 	override public function update(elapsed:Float)
 		{
-			if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A || FlxG.keys.justPressed.D) if (woahmanstopspammin) funnymonke = !funnymonke;
+			if (controls.RIGHT || controls.LEFT || FlxG.keys.justPressed.A || FlxG.keys.justPressed.D) if (woahmanstopspammin) funnymonke = !funnymonke;
 
-			if (FlxG.keys.justPressed.DOWN || FlxG.keys.justPressed.S) if (woahmanstopspammin) changeNumber(1);
+			if (controls.DOWN || FlxG.keys.justPressed.S) if (woahmanstopspammin) changeNumber(1);
 
-			if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.W) if (woahmanstopspammin) changeNumber(-1);
+			if (controls.UP || FlxG.keys.justPressed.W) if (woahmanstopspammin) changeNumber(-1);
 
-			if (FlxG.keys.justPressed.ENTER && woahmanstopspammin) doTheThing(pcmValue, daValue);
+			if (controls.ACCEPT && woahmanstopspammin) doTheThing(pcmValue, daValue);
 
-			if (FlxG.keys.justPressed.ENTER && !woahmanstopspammin && incameo) LoadingState.loadAndSwitchState(new SoundTestMenu());
+			if (controls.ACCEPT && !woahmanstopspammin && incameo) LoadingState.loadAndSwitchState(new SoundTestMenu());
 
-			if (FlxG.keys.justPressed.ESCAPE && woahmanstopspammin && !incameo) LoadingState.loadAndSwitchState(new MainMenuState());
+			if (controls.BACK && woahmanstopspammin && !incameo) LoadingState.loadAndSwitchState(new MainMenuState());
 
 			if (funnymonke)
 			{
@@ -393,15 +383,6 @@ class SoundTestMenu extends MusicBeatState
 			if (daValue < 10)	daNO_NUMBER.text = '0' + Std.string(daValue);
 			else daNO_NUMBER.text = Std.string(daValue);
 
-					
-
-					
-
-
-
-
 			super.update(elapsed);
 		}
-	
-
 }
