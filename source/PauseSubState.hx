@@ -32,11 +32,6 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		super();
 
-		if (PlayState.instance.useVideo)
-		{
-			menuItems.remove("Resume");
-		}
-
 		pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
@@ -74,13 +69,13 @@ class PauseSubState extends MusicBeatSubstate
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
-		perSongOffset = new FlxText(5, FlxG.height - 18, 0, "Additive Offset (Left, Right): " + PlayState.songOffset + " - Description - " + 'Adds value to global offset, per song.', 12);
+		/*perSongOffset = new FlxText(5, FlxG.height - 18, 0, "Additive Offset (Left, Right): " + PlayState.songOffset + " - Description - " + 'Adds value to global offset, per song.', 12);
 		perSongOffset.scrollFactor.set();
-		perSongOffset.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		perSongOffset.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);*/
 		
-		#if cpp
+		/*#if cpp
 			add(perSongOffset);
-		#end
+		#end*/
 
 		for (i in 0...menuItems.length)
 		{
@@ -93,6 +88,10 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+		#if mobile
+		addVirtualPad(UP_DOWN, A);
+		addVirtualPadCamera(false);
+		#end
 	}
 
 	override function update(elapsed:Float)
@@ -101,9 +100,6 @@ class PauseSubState extends MusicBeatSubstate
 			pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
-
-		if (PlayState.instance.useVideo)
-			menuItems.remove('Resume');
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
@@ -139,7 +135,7 @@ class PauseSubState extends MusicBeatSubstate
 			changeSelection(1);
 		}
 		
-		#if cpp
+		/*#if cpp
 			else if (leftP)
 			{
 				oldOffset = PlayState.songOffset;
@@ -193,7 +189,7 @@ class PauseSubState extends MusicBeatSubstate
 					offsetChanged = true;
 				}
 			}
-		#end
+		#end*/
 
 		if (accepted)
 		{
