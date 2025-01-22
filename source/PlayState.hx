@@ -1023,6 +1023,11 @@ class PlayState extends MusicBeatState
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
 
+   #if mobile
+   addMobileControls(false);
+   mobileControls.visible = false;
+   #end
+
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
@@ -1507,6 +1512,9 @@ class PlayState extends MusicBeatState
 	{	
 		SONG.noteStyle = ChartingState.defaultnoteStyle;
 
+   #if mobile
+   mobileControls.visible = true;
+   #end
 
 		var theThing = curSong.toLowerCase();
 		var doesitTween:Bool = if (theThing == 'endless') true else false;
@@ -2968,6 +2976,10 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+	 #if mobile
+   mobileControls.visible = false;
+   #end
+
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,handleInput);
 		if (isStoryMode)
 			campaignMisses = misses;
