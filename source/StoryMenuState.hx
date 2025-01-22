@@ -25,26 +25,18 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
     var ezbg:FlxSprite;
-
     var sprDifficulty:FlxSprite;
-	var leftArrow:FlxSprite;
-	var rightArrow:FlxSprite;
-
+  	var leftArrow:FlxSprite;
+  	var rightArrow:FlxSprite;
     var curdiff:Int = 2;
-
     var oneclickpls:Bool = true;
-
     var bfIDLELAWL:StoryModeMenuBFidle;
-
     var redBOX:FlxSprite;
-
  
     override function create()
     {
-
-        FlxG.sound.playMusic(Paths.music('storymodemenumusic'));
-        
-        var bg:FlxSprite;
+   FlxG.sound.playMusic(Paths.music('storymodemenumusic'));
+    var bg:FlxSprite;
 		
 		bg = new FlxSprite(0, 0);
 		bg.frames = Paths.getSparrowAtlas('SMMStatic', 'exe');
@@ -56,10 +48,7 @@ class StoryMenuState extends MusicBeatState
 		bg.updateHitbox();
 		add(bg);
 
-
-
-
-        var greyBOX:FlxSprite;
+    var greyBOX:FlxSprite;
 		greyBOX = new FlxSprite(0,0).loadGraphic(Paths.image('greybox'));
 		bg.alpha = 1;
 		greyBOX.antialiasing = true;
@@ -68,7 +57,7 @@ class StoryMenuState extends MusicBeatState
 		add(greyBOX);
 
 
-        bfIDLELAWL = new StoryModeMenuBFidle(0,0);
+    bfIDLELAWL = new StoryModeMenuBFidle(0,0);
 		bfIDLELAWL.scale.x = .4;
 		bfIDLELAWL.scale.y = .4;
 		bfIDLELAWL.screenCenter();
@@ -77,12 +66,12 @@ class StoryMenuState extends MusicBeatState
 		bfIDLELAWL.animation.play('idleLAWLAW', true);
 		add(bfIDLELAWL);
 
-        var staticscreen:FlxSprite;
-        staticscreen = new FlxSprite(450, 0);
+    var staticscreen:FlxSprite;
+    staticscreen = new FlxSprite(450, 0);
 		staticscreen.frames = Paths.getSparrowAtlas('screenstatic', 'exe');
 		staticscreen.animation.addByPrefix('screenstaticANIM', "screenSTATIC", 24);
 		staticscreen.animation.play('screenstaticANIM');
-        staticscreen.y += 79;
+    staticscreen.y += 79;
 		staticscreen.alpha = 1;
 		staticscreen.antialiasing = true;
 		staticscreen.setGraphicSize(Std.int(staticscreen.width * 0.275));
@@ -90,7 +79,7 @@ class StoryMenuState extends MusicBeatState
 		add(staticscreen);
 
 
-        var yellowBOX:FlxSprite;
+    var yellowBOX:FlxSprite;
 		yellowBOX = new FlxSprite(0,0).loadGraphic(Paths.image('yellowbox'));
 		yellowBOX.alpha = 1;
 		yellowBOX.antialiasing = true;
@@ -98,7 +87,6 @@ class StoryMenuState extends MusicBeatState
 		yellowBOX.updateHitbox();
 		add(yellowBOX);
 
-        
 		redBOX = new FlxSprite(0,0).loadGraphic(Paths.image('redbox'));
 		redBOX.alpha = 1;
 		redBOX.antialiasing = true;
@@ -106,35 +94,37 @@ class StoryMenuState extends MusicBeatState
 		redBOX.updateHitbox();
 		add(redBOX);
 
-
-
-
-        sprDifficulty = new FlxSprite(550, 600);
-        sprDifficulty.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-        sprDifficulty.animation.addByPrefix('easy', 'EASY');
+    sprDifficulty = new FlxSprite(550, 600);
+    sprDifficulty.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+    sprDifficulty.animation.addByPrefix('easy', 'EASY');
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
 		sprDifficulty.animation.play('normal');
         add(sprDifficulty);
 
-        leftArrow = new FlxSprite(sprDifficulty.x - 150, sprDifficulty.y);
-        leftArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-        leftArrow.setGraphicSize(Std.int(leftArrow.width * 0.8));
-        leftArrow.animation.addByPrefix('idle', "arrow left");
+   leftArrow = new FlxSprite(sprDifficulty.x - 150, sprDifficulty.y);
+    leftArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+    leftArrow.setGraphicSize(Std.int(leftArrow.width * 0.8));
+    leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
 		leftArrow.animation.play('idle');
         add(leftArrow);
 
-        rightArrow = new FlxSprite(sprDifficulty.x + 230, sprDifficulty.y);
-        rightArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-        rightArrow.setGraphicSize(Std.int(rightArrow.width * 0.8));
-        rightArrow.animation.addByPrefix('idle', "arrow right");
+    rightArrow = new FlxSprite(sprDifficulty.x + 230, sprDifficulty.y);
+    rightArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
+    rightArrow.setGraphicSize(Std.int(rightArrow.width * 0.8));
+    rightArrow.animation.addByPrefix('idle', "arrow right");
 		rightArrow.animation.addByPrefix('press', "arrow push right");
 		rightArrow.animation.play('idle');
-        add(rightArrow);
+     add(rightArrow);
 
         sprDifficulty.offset.x = 70;
         sprDifficulty.y = leftArrow.y + 10;
+
+       #if mobile
+       addVirtualPad(LEFT_RIGHT, A_B);
+       addVirtualPadCamera(false);
+       #end
 
         super.create();
     }
